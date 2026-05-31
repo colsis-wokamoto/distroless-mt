@@ -8,8 +8,8 @@ SupportDirectoryPath /var/www/movabletype/mt-static/support
 ObjectDriver         DBI::mysql
 # DB connection settings are provided through MT_CONFIG_* system environment variables.
 
-# PID file: use /tmp so distroless (non-root) can write; Starman --pid must match
-PIDFilePath          /var/www/mt.pid
+# PID file for MT's admin restart feature; Starman --pid must match.
+PIDFilePath          /tmp/mt-starman.pid
 
 DefaultLanguage      ja
 DefaultTimezone      9

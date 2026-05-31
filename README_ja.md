@@ -124,6 +124,7 @@ Fargate 向け設定でイメージをビルドする場合:
 - DB 認証情報は `.env` から `database` と `phpmyadmin` に注入され、`movabletype` には同じ接続値を Movable Type の `MT_CONFIG_*` 環境変数として渡します。
 - `movabletype` は `MT_CONFIG_FILE`、`MT_STATIC_DIR`、`MT_LOG_DIR`、テンプレート/プラグインの bind mount を利用します。
 - `movabletype` 内では Apache がポート `5000` で待ち受けます。`/mt/*.cgi` は CGI として実行し、それ以外の `/mt/` は `127.0.0.1:5001` の Starman にプロキシします。
+- `PIDFilePath` は Starman の `/tmp/mt-starman.pid` を指します。Movable Type 管理画面の再起動操作は Starman のプロセスマネージャーへ `SIGHUP` を送ります。
 - `TIME_ZONE` は Web/DB イメージ向けの任意ビルド引数で、Dockerfile の既定値は `Asia/Tokyo` です。
 - `DEPLOY_ENV` は webserver/movabletype イメージ向けの任意ビルド引数で、既定値は `local` です。
 - MySQL と Mailpit のデータは named volume（`dbdata`、`mailpitdata`）に保存されます。

@@ -124,6 +124,7 @@ To send mail to the bundled Mailpit service from containers in this stack:
 - DB credentials are injected through `.env` into `database` and `phpmyadmin`; `movabletype` receives the same connection values as Movable Type `MT_CONFIG_*` environment variables.
 - `movabletype` uses `MT_CONFIG_FILE`, `MT_STATIC_DIR`, `MT_LOG_DIR`, and template/plugin bind mounts from `.env`/Compose defaults.
 - Inside `movabletype`, Apache listens on port `5000`; `/mt/*.cgi` runs as CGI and other `/mt/` requests are proxied to Starman on `127.0.0.1:5001`.
+- `PIDFilePath` points to Starman's `/tmp/mt-starman.pid`, so the Movable Type admin restart action sends `SIGHUP` to the Starman process manager.
 - `TIME_ZONE` is an optional build argument for web/database images and defaults to `Asia/Tokyo` in Dockerfiles.
 - `DEPLOY_ENV` is an optional build argument for webserver/movabletype images and defaults to `local`.
 - MySQL and Mailpit data are stored in named volumes (`dbdata`, `mailpitdata`).
